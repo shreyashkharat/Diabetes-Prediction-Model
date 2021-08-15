@@ -1,3 +1,4 @@
+# Required packages: ggplot2, MASS, caTools, class.
 pop_data <- read.csv("/home/shreyashkharat/Datasets/diabetes.csv", header = TRUE)
 pop_data_fixed <- read.csv("/home/shreyashkharat/Datasets/diabetes.csv", header = TRUE)
 summary(pop_data)
