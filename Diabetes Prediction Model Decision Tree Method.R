@@ -1,3 +1,4 @@
+# Required Packages: caTools, rpart, rpart.plot, randomForest, gbm, adabag, xgboost.
 pop_data <- read.csv("/home/shreyashkharat/Datasets/diabetes.csv", header = TRUE)
 pop_data_fixed <- read.csv("/home/shreyashkharat/Datasets/diabetes.csv", header = TRUE)
 
