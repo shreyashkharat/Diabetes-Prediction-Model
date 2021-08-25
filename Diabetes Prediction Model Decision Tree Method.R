@@ -20,7 +20,7 @@ rpart.plot(class_tree, box.palette = "RdYlGn", digits = -3)
 class_predict <- predict(class_tree, test_set, type = "class")
 table(class_predict, test_set$Outcome)
 (94+33)/170
-# The Simple Classification Tree gives an accuracy of 0.7470
+# The Simple Classification Tree gives an R^2 of 0.7470
 
 # Pruning class_tree and full tree Building
 full_tree = rpart(formula = Outcome~., data = train_set, method = "class", control = rpart.control(cp = 0))
@@ -37,9 +37,9 @@ full_predict <- predict(full_tree, test_set, type = "class")
 table(pruned_predict, test_set$Outcome)
 table(full_predict, test_set$Outcome)
 (91+35)/170
-# Pruned tree gives an accuracy of 0.7411.
+# Pruned tree gives an R^2 of 0.7411.
 (87+35)/170
-# Full Tree gives an accuracy of 0.7176
+# Full Tree gives an R^2 of 0.7176
 
 # Let's try Ensemble Techniques
 # Ensemble Technique: 1. BAGGING
@@ -52,7 +52,7 @@ bagging_predict[bagging_probs > 0.5] <- "YES"
 # Confusion Matrix
 table(bagging_predict, test_set$Outcome)
 (90+35)/170
-# The bagging model gives an accuracy of 0.7352.
+# The bagging model gives an R^2 of 0.7352.
 
 # Ensemble Technique: 2. RANDOM FOREST
 set.seed(0)
@@ -63,7 +63,7 @@ random_forest_predict[random_forest_probs > 0.5] <-"YES"
 # Confusion Matrix
 table(random_forest_predict, test_set$Outcome)
 (92+35)/170
-# The Random Forest Model gives an accuracy of 0.7470, which nearly that of Simple tree.
+# The Random Forest Model gives an R^2 of 0.7470, which nearly that of Simple tree.
 
 # Ensemble Technique: 3. GBM or Gradient Boosting Model
 require("gbm")
@@ -78,7 +78,7 @@ gbm_predict[gbm_probs > 0.5] <- "YES"
 # Confusion Matrix
 table(gbm_predict, test_set$Outcome)
 (92+35)/170
-# The Random Forest Model gives an accuracy of 0.7470, which nearly that of Simple tree.
+# The Random Forest Model gives an R^2 of 0.7470, which nearly that of Simple tree.
 
 # Ensemble Technique: 4. AdaBoost or Adaptive Boost
 require("adabag")
@@ -88,7 +88,7 @@ model_adaboost <- boosting(Outcome~., data = train_set, boos = TRUE, mfinal = 10
 ada_predict <- predict(model_adaboost, test_set)
 table(ada_predict$class, test_set$Outcome)
 (87+35)/170
-# AdaBoost gives an accuracy of 0.7176.
+# AdaBoost gives an R^2 of 0.7176.
 
 # Ensemble Technique: 5. XGBoost or Xtreme Gradient Boosting Model
 require("xgboost")
@@ -110,5 +110,5 @@ xgboost_predict <- predict(model_xgboost, DMatrix_test)
 # Confusion Matrix
 table(xgboost_predict, test_Y)
 (90+34)/170
-# XGBoost gives an accuracy of 0.7294.
-# The highest accuracy is given by random forest and simple deecision tree as 0.7470.
+# XGBoost gives an R^2 of 0.7294.
+# The highest accuracy is given by random forest and simple deecision tree.
