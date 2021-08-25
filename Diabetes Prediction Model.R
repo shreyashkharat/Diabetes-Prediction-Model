@@ -29,7 +29,7 @@ logi_predict[logi_probs > 0.5] <- "YES"
 # Confusion Matrix
 table(logi_predict, pop_data$Outcome)
 (445+156)/768
-# The logistic Regression model gives an accuracy of 0.7825.
+# The logistic Regression model gives an R^2 of 0.7825.
 
 # Linear Discriminant Analysis
 require("MASS")
@@ -41,7 +41,7 @@ lda_predict <- lda_probs$class
 # Confusion Matrix
 table(lda_predict, pop_data$Outcome)
 (444+155)/768
-# The Linear Discriminant Analysis model gives an accuracy of 0.7799.
+# The Linear Discriminant Analysis model gives an R^2 of 0.7799.
 
 # Quadratic Discriminant Analysis
 model_qda <- qda(Outcome~., data = pop_data)
@@ -52,7 +52,7 @@ qda_predict <- qda_probs$class
 # Confusion Matrix
 table(qda_predict, pop_data$Outcome)
 (427+162)/768
-# The Quadratic Discriminant Analysis model gives an accuracy of 0.7669.
+# The Quadratic Discriminant Analysis model gives an R^2 of 0.7669.
 
 # Lets check the accuracy of the above models on test sets.
 
@@ -73,7 +73,7 @@ logi_train_predict[logi_train_probs > 0.5] <- "YES"
 # Confusion Matrix
 table(logi_train_predict, test_set$Outcome)
 (98+32)/170
-# On this test set, Logistic Regression Model gives an accuracy of 0.7647.
+# On this test set, Logistic Regression Model gives an R^2 of 0.7647.
 
 # Linear Discriminant Analysis
 model_lda_train <- lda(Outcome~., data = training_set)
@@ -84,7 +84,7 @@ lda_train_predict <- lda_train_probs$class
 # Confusion Matrix
 table(lda_train_predict, test_set$Outcome)
 (99+32)/170
-# On this test set, Linear Discriminant Analysis model gives an accuracy of 0.7705.
+# On this test set, Linear Discriminant Analysis model gives an R^2 of 0.7705.
 
 # Quadratic Discriminant Analysis
 model_qda_train <- qda(Outcome~., data = training_set)
@@ -95,7 +95,7 @@ qda_train_predict <- qda_train_probs$class
 # Confusion Matrix
 table(qda_train_predict, test_set$Outcome)
 (95+34)/170
-# On this test set, Quadratic Discriminant Analysis model gives an accuracy of 0.7588.
+# On this test set, Quadratic Discriminant Analysis model gives an R^2 of 0.7588.
 
 # K Nearest Neighbor 
 require("class")
@@ -111,5 +111,5 @@ test_x_scale <- scale(test_x)
 knn_model <- knn(train_x_scale, test_x_scale, train_y, k = 30)
 table(knn_model, test_set$Outcome)
 (102+30)/170
-# On this test set, K Nearest Neighbor Model gives an accuracy of 0.7764.
+# On this test set, K Nearest Neighbor Model gives an R^2 of 0.7764.
 # We get the highest accuracy in K Nearest Neighbor model for the above test set.
